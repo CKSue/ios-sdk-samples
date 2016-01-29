@@ -19,10 +19,10 @@
 @implementation ViewController
 
 #pragma mark -
-#pragma mark AFDXDetectorDelegate Methods
+#pragma mark Convenience Methods
 
-// This is a convenience method that is called by the delegate method below. It handles all PROCESSED
-// images from the detector. You will want to do something with the face (or faces) found.
+// This is a convenience method that is called by the detector:hasResults:forImage:atTime: delegate method below.
+// You will want to do something with the face (or faces) found.
 - (void)processedImageReady:(AFDXDetector *)detector image:(UIImage *)image faces:(NSDictionary *)faces atTime:(NSTimeInterval)time;
 {
     // iterate on the values of the faces dictionary
@@ -34,37 +34,17 @@
     }
 }
 
-// This is a convenience method that is called by the delegate method below. It handles all UNPROCESSED
-// images from the detector. Here I am displaying those images on the camera view.
+// This is a convenience method that is called by the detector:hasResults:forImage:atTime: delegate method below.
+// It handles all UNPROCESSED images from the detector. Here I am displaying those images on the camera view.
 - (void)unprocessedImageReady:(AFDXDetector *)detector image:(UIImage *)image atTime:(NSTimeInterval)time;
 {
     __block ViewController *weakSelf = self;
-
+    
     // UI work must be done on the main thread, so dispatch it there.
     dispatch_async(dispatch_get_main_queue(), ^{
         [weakSelf.cameraView setImage:image];
     });
 }
-
-
-// This is the delegate method of the AFDXDetectorDelegate protocol. This method gets called for:
-// - Every frame coming in from the camera. In this case, faces is nil
-// - Every PROCESSED frame that the detector
-- (void)detector:(AFDXDetector *)detector hasResults:(NSMutableDictionary *)faces forImage:(UIImage *)image atTime:(NSTimeInterval)time;
-{
-    if (nil == faces)
-    {
-        [self unprocessedImageReady:detector image:image atTime:time];
-    }
-    else
-    {
-        [self processedImageReady:detector image:image faces:faces atTime:time];
-    }
-}
-
-
-#pragma mark -
-#pragma mark Detector Start/Stop Methods
 
 - (void)destroyDetector;
 {
@@ -98,7 +78,7 @@
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Detector Error"
                                                                        message:[error localizedDescription]
                                                                 preferredStyle:UIAlertControllerStyleAlert];
-
+        
         [self presentViewController:alert animated:YES completion:
          ^{}
          ];
@@ -109,18 +89,37 @@
 
 
 #pragma mark -
+#pragma mark AFDXDetectorDelegate Methods
+
+// This is the delegate method of the AFDXDetectorDelegate protocol. This method gets called for:
+// - Every frame coming in from the camera. In this case, faces is nil
+// - Every PROCESSED frame that the detector
+- (void)detector:(AFDXDetector *)detector hasResults:(NSMutableDictionary *)faces forImage:(UIImage *)image atTime:(NSTimeInterval)time;
+{
+    if (nil == faces)
+    {
+        [self unprocessedImageReady:detector image:image atTime:time];
+    }
+    else
+    {
+        [self processedImageReady:detector image:image faces:faces atTime:time];
+    }
+}
+
+
+#pragma mark -
 #pragma mark View Methods
 
 - (void)viewWillAppear:(BOOL)animated;
 {
     [super viewWillAppear:animated];
-    [self createDetector];
+    [self createDetector]; // create the dector just before the view appears
 }
 
 - (void)viewWillDisappear:(BOOL)animated;
 {
     [super viewWillDisappear:animated];
-    [self destroyDetector];
+    [self destroyDetector]; // destroy the detector before the view disappears
 }
 
 - (void)didReceiveMemoryWarning;
