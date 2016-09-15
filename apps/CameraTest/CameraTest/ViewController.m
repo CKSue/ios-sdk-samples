@@ -8,10 +8,6 @@
 
 #import "ViewController.h"
 
-#ifndef YOUR_AFFDEX_LICENSE_STRING_GOES_HERE
-#error Please set the macro YOUR_AFFDEX_LICENSE_STRING_GOES_HERE to the contents of your Affectiva SDK license file.
-#endif
-
 @interface ViewController ()
 
 @end
@@ -38,7 +34,7 @@
 // It handles all UNPROCESSED images from the detector. Here I am displaying those images on the camera view.
 - (void)unprocessedImageReady:(AFDXDetector *)detector image:(UIImage *)image atTime:(NSTimeInterval)time;
 {
-    __block ViewController *weakSelf = self;
+    ViewController * __weak weakSelf = self;
     
     // UI work must be done on the main thread, so dispatch it there.
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -56,34 +52,44 @@
     // ensure the detector has stopped
     [self destroyDetector];
     
-    // create a new detector, set the processing frame rate in frames per second, and set the license string
-    self.detector = [[AFDXDetector alloc] initWithDelegate:self usingCamera:AFDX_CAMERA_FRONT maximumFaces:1];
-    self.detector.maxProcessRate = 5;
-    self.detector.licenseString = YOUR_AFFDEX_LICENSE_STRING_GOES_HERE;
-    
-    // turn on all classifiers (emotions, expressions, and emojis)
-    [self.detector setDetectAllEmotions:YES];
-    [self.detector setDetectAllExpressions:YES];
-    [self.detector setDetectEmojis:YES];
-    
-    // turn on gender and glasses
-    self.detector.gender = TRUE;
-    self.detector.glasses = TRUE;
-    
-    // start the detector and check for failure
-    NSError *error = [self.detector start];
-    
-    if (nil != error)
+    // iterate through the capture devices to find the front position camera
+    NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    for (AVCaptureDevice *device in devices)
     {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Detector Error"
-                                                                       message:[error localizedDescription]
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        
-        [self presentViewController:alert animated:YES completion:
-         ^{}
-         ];
-        
-        return;
+        if ([device position] == AVCaptureDevicePositionFront)
+        {
+            self.detector = [[AFDXDetector alloc] initWithDelegate:self
+                                                usingCaptureDevice:device
+                                                      maximumFaces:1];
+            self.detector.maxProcessRate = 5;
+            
+            // turn on all classifiers (emotions, expressions, and emojis)
+            [self.detector setDetectAllEmotions:YES];
+            [self.detector setDetectAllExpressions:YES];
+            [self.detector setDetectEmojis:YES];
+            
+            // turn on gender and glasses
+            self.detector.gender = TRUE;
+            self.detector.glasses = TRUE;
+            
+            // start the detector and check for failure
+            NSError *error = [self.detector start];
+            
+            if (nil != error)
+            {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Detector Error"
+                                                                               message:[error localizedDescription]
+                                                                        preferredStyle:UIAlertControllerStyleAlert];
+                
+                [self presentViewController:alert animated:YES completion:
+                 ^{}
+                 ];
+                
+                return;
+            }
+            
+            break;
+        }
     }
 }
 
