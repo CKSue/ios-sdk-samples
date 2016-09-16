@@ -13,8 +13,7 @@
 		6819DE671C5AA1C300E60826 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6819DE651C5AA1C300E60826 /* Main.storyboard */; };
 		6819DE691C5AA1C300E60826 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6819DE681C5AA1C300E60826 /* Assets.xcassets */; };
 		6819DE6C1C5AA1C300E60826 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6819DE6A1C5AA1C300E60826 /* LaunchScreen.storyboard */; };
-		6819DE791C5AA32200E60826 /* Affdex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6819DE781C5AA32200E60826 /* Affdex.framework */; };
-		6819DE7B1C5AA36E00E60826 /* Affdex.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6819DE781C5AA32200E60826 /* Affdex.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EEB88EE55C6E3288A86B14CF /* Pods_CameraTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B864E02BB90A7186D46D7A /* Pods_CameraTest.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +23,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6819DE7B1C5AA36E00E60826 /* Affdex.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -32,6 +30,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		09B864E02BB90A7186D46D7A /* Pods_CameraTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CameraTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		63C6264602C79F90E37E89EA /* Pods-CameraTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CameraTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CameraTest/Pods-CameraTest.debug.xcconfig"; sourceTree = "<group>"; };
 		6819DE591C5AA1C300E60826 /* CameraTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CameraTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6819DE5D1C5AA1C300E60826 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6819DE5F1C5AA1C300E60826 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -42,7 +42,8 @@
 		6819DE681C5AA1C300E60826 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6819DE6B1C5AA1C300E60826 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6819DE6D1C5AA1C300E60826 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6819DE781C5AA32200E60826 /* Affdex.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Affdex.framework; path = ../../frameworks/Affdex.framework; sourceTree = "<group>"; };
+		6C7394977B47D092FEBB4F8C /* Pods-CameraTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CameraTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-CameraTest/Pods-CameraTest.release.xcconfig"; sourceTree = "<group>"; };
+		D66DDE97899AC0C8AC88B8C3 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,19 +51,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6819DE791C5AA32200E60826 /* Affdex.framework in Frameworks */,
+				EEB88EE55C6E3288A86B14CF /* Pods_CameraTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0FAF0D153E6F827B10CC63EA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D66DDE97899AC0C8AC88B8C3 /* Pods.framework */,
+				09B864E02BB90A7186D46D7A /* Pods_CameraTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6819DE501C5AA1C300E60826 = {
 			isa = PBXGroup;
 			children = (
-				6819DE781C5AA32200E60826 /* Affdex.framework */,
 				6819DE5B1C5AA1C300E60826 /* CameraTest */,
 				6819DE5A1C5AA1C300E60826 /* Products */,
+				0FAF0D153E6F827B10CC63EA /* Frameworks */,
+				FB2061A2D2FED9F82124A847 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,6 +109,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		FB2061A2D2FED9F82124A847 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				63C6264602C79F90E37E89EA /* Pods-CameraTest.debug.xcconfig */,
+				6C7394977B47D092FEBB4F8C /* Pods-CameraTest.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -105,10 +125,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6819DE701C5AA1C300E60826 /* Build configuration list for PBXNativeTarget "CameraTest" */;
 			buildPhases = (
+				807883ED21C539E4BBCA101F /* [CP] Check Pods Manifest.lock */,
 				6819DE551C5AA1C300E60826 /* Sources */,
 				6819DE561C5AA1C300E60826 /* Frameworks */,
 				6819DE571C5AA1C300E60826 /* Resources */,
 				6819DE771C5AA2FD00E60826 /* Embed Frameworks */,
+				CD6C139A7C77FD9A8BAA285A /* [CP] Embed Pods Frameworks */,
+				CC5391332FF620C6F1E102F0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -163,6 +186,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		807883ED21C539E4BBCA101F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CC5391332FF620C6F1E102F0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CameraTest/Pods-CameraTest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CD6C139A7C77FD9A8BAA285A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CameraTest/Pods-CameraTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6819DE551C5AA1C300E60826 /* Sources */ = {
@@ -281,9 +352,10 @@
 		};
 		6819DE711C5AA1C300E60826 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63C6264602C79F90E37E89EA /* Pods-CameraTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = ../../frameworks;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = CameraTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.affectiva.CameraTest;
@@ -293,9 +365,10 @@
 		};
 		6819DE721C5AA1C300E60826 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6C7394977B47D092FEBB4F8C /* Pods-CameraTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = ../../frameworks;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = CameraTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.affectiva.CameraTest;

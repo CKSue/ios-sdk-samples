@@ -1,24 +1,35 @@
-Affdex Sample Code for the Affdex SDK for iOS
-=============================================
-Welcome to our repository on GitHub! Here you will find example code to get you started with our Affdex SDK for iOS and get you started emotion-enabling you own app!
+![Affectiva Logo](http://developer.affectiva.com/images/logo.png)
 
-In order to use the project, you will need to:
-- Obtain the Affdex SDK for iOS by visiting http://www.affectiva.com/sdk
-- Copy Affdex.framework into the frameworks folder.
-- Add the contents of the license file near the top of the ViewController.m file. For example:
+###Copyright (c) 2016 Affectiva Inc. <br/>
+The Affdex SDK is covered by our [SDK License Agreement](http://developer.affectiva.com/sdklicense)<br/>
+The AffdexMe app is covered by the MIT license.  See the file [license.txt](license.txt) for copying permission.
 
-```
-#define YOUR_AFFDEX_LICENSE_STRING_GOES_HERE @"{\"token\": \"01234567890abcdefghijklmnopqrstuvwxyz01234567890abcdefghijklmnop\", \"licensor\": \"Affectiva Inc.\", \"expires\": \"2016-11-20\", \"developerId\": \"developer@mycompany.com\", \"software\": \"Affdex SDK\"}"
-```
+*****************************
 
-We welcome your contributions to this project. Also, feel free to use this code as starting point for your app.
-
-The sample apps are:
+These iOS sample apps demonstrate the use of the Affectiva iOS SDK. Feel free to use this as a starting point for your own apps.
 
 CameraTest
 ----------
 This is a simple app that demonstrates how to to use the Affdex SDK with the built-in camera on your iOS device.
 
-***
+For developer documentation, sample code, and other information, please visit our website:
+http://developer.affectiva.com
 
-This app uses some of the excellent [Emoji One emojis](http://emojione.com).
+The SDK License Agreement is available at:
+http://developer.affectiva.com/sdklicense
+
+How To Build
+----------
+All projects build under Xcode 7 or later. In order to build each one, you will need to:
+
+- Have a valid CocoaPods installation on your machine ([visit the CocoaPods website for more info](http://www.cocoapods.org).
+)
+- With CocoaPods installed, launch Terminal.app, change into the project directory you want to build, then type the following command to associate the Affdex SDK with that project:
+
+```
+pod install
+```
+
+- CocoaPods will generate an Xcode workspace file ending in .xcworkspace -- open it in Xcode (do not the .xcodeproj file).
+- Build the project for your simulator or device.  (For apps that use the camera, you will need to build for the device since the simulator cannot access the Mac's built-in camera.)
+
